@@ -1,0 +1,149 @@
+/* ── Root & Body ─────────────────────────────────────────────────────────── */
+:root {
+  --bg-base:      #0d1117;
+  --bg-card:      #161b22;
+  --bg-card-hover:#1f2937;
+  --border-color: #30363d;
+  --text-primary: #e6edf3;
+  --text-muted:   #8b949e;
+  --accent:       #58a6ff;
+  --status-up:    #3fb950;
+  --status-down:  #f85149;
+  --status-pend:  #d29922;
+}
+
+html, body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* ── Navbar ──────────────────────────────────────────────────────────────── */
+.navbar {
+  background-color: #010409 !important;
+}
+
+/* ── Cards (homepage) ────────────────────────────────────────────────────── */
+.bookmark-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition: transform .15s ease, border-color .15s ease, background-color .15s ease;
+}
+
+.bookmark-card:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(88, 166, 255, .15);
+}
+
+.bookmark-card .card-title {
+  color: var(--text-primary);
+  font-size: .95rem;
+}
+
+/* ── Icon helpers ────────────────────────────────────────────────────────── */
+.bookmark-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.bookmark-icon-sm {
+  width: 28px;
+  height: 28px;
+}
+
+.bookmark-icon-glyph {
+  font-size: 1.6rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.bookmark-icon-sm .bookmark-icon-glyph {
+  font-size: 1.2rem;
+}
+
+.bookmark-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ── Status badge ────────────────────────────────────────────────────────── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .7rem;
+  font-weight: 600;
+  padding: .2rem .5rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-up   { color: var(--status-up);   border: 1px solid var(--status-up); }
+.status-up   .status-dot { background: var(--status-up);   box-shadow: 0 0 6px var(--status-up); }
+
+.status-down { color: var(--status-down); border: 1px solid var(--status-down); }
+.status-down .status-dot { background: var(--status-down); }
+
+.status-pending { color: var(--status-pend); border: 1px solid var(--status-pend); }
+.status-pending .status-dot { background: var(--status-pend); animation: pulse 1.4s infinite; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .3; }
+}
+
+/* ── Table ───────────────────────────────────────────────────────────────── */
+.table-dark {
+  --bs-table-bg: var(--bg-card);
+  --bs-table-hover-bg: var(--bg-card-hover);
+  --bs-table-border-color: var(--border-color);
+}
+
+.table th {
+  color: var(--text-muted);
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-weight: 600;
+}
+
+/* ── Card dark overrides ─────────────────────────────────────────────────── */
+.card {
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+.card-header {
+  background-color: rgba(255,255,255,.04);
+  border-bottom-color: var(--border-color);
+}
+
+/* ── Form controls ───────────────────────────────────────────────────────── */
+.form-control:focus, .form-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 .15rem rgba(88,166,255,.25);
+}
+
+.form-control::placeholder {
+  color: var(--text-muted);
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #484f58; }

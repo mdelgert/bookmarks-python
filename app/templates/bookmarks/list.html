@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Edit Bookmarks{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="h3 mb-0">
+    <i class="mdi mdi-bookmark-edit me-2 text-primary"></i>Edit Bookmarks
+  </h1>
+</div>
+
+<!-- Add Bookmark Form -->
+<div class="card mb-4">
+  <div class="card-header d-flex align-items-center gap-2">
+    <i class="mdi mdi-plus-circle text-success"></i>
+    <span>Add Bookmark</span>
+    <button class="btn btn-sm btn-outline-secondary ms-auto" type="button"
+            data-bs-toggle="collapse" data-bs-target="#addForm">
+      <i class="mdi mdi-chevron-down"></i>
+    </button>
+  </div>
+  <div class="collapse show" id="addForm">
+    <div class="card-body">
+      <form
+        hx-post="/bookmarks"
+        hx-target="#bookmark-tbody"
+        hx-swap="innerHTML"
+        hx-on::after-request="this.reset()"
+      >
+        {% include "bookmarks/partials/bookmark_form_fields.html" %}
+        <div class="d-flex gap-2 mt-3">
+          <button type="submit" class="btn btn-success">
+            <i class="mdi mdi-content-save me-1"></i>Save Bookmark
+          </button>
+          <button type="reset" class="btn btn-outline-secondary">
+            <i class="mdi mdi-refresh me-1"></i>Reset
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Search & Table -->
+<div class="card">
+  <div class="card-header d-flex align-items-center gap-3">
+    <i class="mdi mdi-magnify text-primary"></i>
+    <input
+      type="search"
+      class="form-control form-control-sm"
+      placeholder="Search bookmarks…"
+      hx-get="/bookmarks/search"
+      hx-trigger="keyup changed delay:300ms, search"
+      hx-target="#bookmark-tbody"
+      hx-swap="innerHTML"
+      name="q"
+      style="max-width: 320px;"
+    />
+    <span class="ms-auto text-muted small" id="bookmark-count">{{ bookmarks | length }} bookmarks</span>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-dark table-hover mb-0 align-middle">
+      <thead>
+        <tr>
+          <th>Icon</th>
+          <th>Title</th>
+          <th>URL</th>
+          <th>Category</th>
+          <th>Active</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="bookmark-tbody">
+        {% include "bookmarks/partials/bookmark_rows.html" %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
