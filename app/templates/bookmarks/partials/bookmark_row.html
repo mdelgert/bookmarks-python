@@ -1,0 +1,43 @@
+<tr id="bookmark-{{ bookmark.id }}">
+  <td>
+    <span class="bookmark-icon bookmark-icon-sm">
+      {% include "bookmarks/partials/icon.html" %}
+    </span>
+  </td>
+  <td class="fw-semibold">{{ bookmark.title }}</td>
+  <td>
+    <a href="{{ bookmark.url }}" target="_blank" rel="noopener noreferrer"
+       class="text-info text-truncate d-inline-block" style="max-width:240px;">
+      {{ bookmark.url }}
+    </a>
+  </td>
+  <td>
+    {% if bookmark.category %}
+      <span class="badge bg-secondary">{{ bookmark.category }}</span>
+    {% else %}
+      <span class="text-muted">—</span>
+    {% endif %}
+  </td>
+  <td>
+    {% if bookmark.is_active %}
+      <span class="badge bg-success">Active</span>
+    {% else %}
+      <span class="badge bg-secondary">Inactive</span>
+    {% endif %}
+  </td>
+  <td class="text-end">
+    <button class="btn btn-sm btn-outline-primary me-1"
+            hx-get="/bookmarks/{{ bookmark.id }}/edit"
+            hx-target="#bookmark-{{ bookmark.id }}"
+            hx-swap="outerHTML">
+      <i class="mdi mdi-pencil"></i>
+    </button>
+    <button class="btn btn-sm btn-outline-danger"
+            hx-delete="/bookmarks/{{ bookmark.id }}"
+            hx-target="#bookmark-{{ bookmark.id }}"
+            hx-swap="outerHTML"
+            hx-confirm="Delete '{{ bookmark.title }}'?">
+      <i class="mdi mdi-delete"></i>
+    </button>
+  </td>
+</tr>

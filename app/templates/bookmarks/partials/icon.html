@@ -1,0 +1,18 @@
+{% if bookmark.icon_type == 'mdi' and bookmark.icon_value %}
+  <i class="mdi mdi-{{ bookmark.icon_value }} bookmark-icon-glyph"></i>
+{% elif bookmark.icon_type == 'si' and bookmark.icon_value %}
+  <img src="https://cdn.simpleicons.org/{{ bookmark.icon_value }}/aaaaaa"
+       alt="{{ bookmark.icon_value }}" class="bookmark-icon-img" loading="lazy" />
+{% elif bookmark.icon_type == 'selfhst' and bookmark.icon_value %}
+  <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/png/{{ bookmark.icon_value }}.png"
+       alt="{{ bookmark.icon_value }}" class="bookmark-icon-img" loading="lazy"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='inline'" />
+  <i class="mdi mdi-image-off bookmark-icon-glyph" style="display:none;"></i>
+{% elif bookmark.icon_type == 'url' and bookmark.icon_value %}
+  <img src="{{ bookmark.icon_value }}"
+       alt="{{ bookmark.title }}" class="bookmark-icon-img" loading="lazy"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='inline'" />
+  <i class="mdi mdi-image-off bookmark-icon-glyph" style="display:none;"></i>
+{% else %}
+  <i class="mdi mdi-web bookmark-icon-glyph"></i>
+{% endif %}
