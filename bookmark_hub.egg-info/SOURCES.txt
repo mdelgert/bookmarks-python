@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+app/__init__.py
+app/config.py
+app/dependencies.py
+app/logging_config.py
+app/main.py
+bookmark_hub.egg-info/PKG-INFO
+bookmark_hub.egg-info/SOURCES.txt
+bookmark_hub.egg-info/dependency_links.txt
+bookmark_hub.egg-info/requires.txt
+bookmark_hub.egg-info/top_level.txt

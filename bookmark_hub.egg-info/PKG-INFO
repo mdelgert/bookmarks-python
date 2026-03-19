@@ -1,3 +1,24 @@
+Metadata-Version: 2.4
+Name: bookmark-hub
+Version: 0.1.0
+Summary: FastAPI starter for a bookmark manager and dashboard app
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastapi<1.0,>=0.116
+Requires-Dist: uvicorn[standard]<1.0,>=0.35
+Requires-Dist: sqlalchemy<3.0,>=2.0
+Requires-Dist: alembic<2.0,>=1.16
+Requires-Dist: pydantic-settings<3.0,>=2.10
+Requires-Dist: jinja2<4.0,>=3.1
+Requires-Dist: python-multipart<1.0,>=0.0.20
+Provides-Extra: dev
+Requires-Dist: pytest<9.0,>=8.4; extra == "dev"
+Requires-Dist: httpx<1.0,>=0.28; extra == "dev"
+Requires-Dist: ruff<1.0,>=0.12; extra == "dev"
+Requires-Dist: black<26.0,>=25.1; extra == "dev"
+Dynamic: license-file
+
 # Bookmark Hub Starter
 
 A production-clean starter for a bookmark manager / dashboard app using:

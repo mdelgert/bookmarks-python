@@ -1,0 +1,5 @@
+<li class="bookmark-item">
+    <a href="{{ bookmark.url }}" target="_blank" rel="noopener noreferrer">{{ bookmark.title }}</a>
+    {% if bookmark.is_pinned %}<span class="badge">Pinned</span>{% endif %}
+    {% if bookmark.notes %}<div class="muted">{{ bookmark.notes }}</div>{% endif %}
+</li>

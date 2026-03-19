@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Bookmark Hub</h1>
+<p class="muted">FastAPI + SQLAlchemy + HTMX starter</p>
+
+<section class="card">
+    <h2>Add bookmark</h2>
+    <form hx-post="/bookmarks/ui" hx-target="#bookmark-list" hx-swap="beforeend">
+        <input type="text" name="title" placeholder="Title" required />
+        <input type="url" name="url" placeholder="https://example.com" required />
+        <textarea name="notes" placeholder="Notes"></textarea>
+        <button type="submit">Add bookmark</button>
+    </form>
+</section>
+
+<section class="card">
+    <h2>Bookmarks</h2>
+    <ul id="bookmark-list" class="bookmark-list">
+        {% for bookmark in bookmarks %}
+            {% include "partials/bookmark_item.html" %}
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
