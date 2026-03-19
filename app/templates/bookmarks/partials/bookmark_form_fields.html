@@ -1,0 +1,82 @@
+<div class="row g-3">
+  <div class="col-md-6">
+    <label class="form-label text-muted small">Title <span class="text-danger">*</span></label>
+    <input type="text" name="title" class="form-control form-control-sm bg-dark text-light border-secondary"
+           placeholder="e.g. My Server" required
+           value="{{ bookmark.title if bookmark is defined else '' }}">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label text-muted small">URL <span class="text-danger">*</span></label>
+    <input type="url" name="url" class="form-control form-control-sm bg-dark text-light border-secondary"
+           placeholder="https://example.com" required
+           value="{{ bookmark.url if bookmark is defined else '' }}">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label text-muted small">Category</label>
+    <input type="text" name="category" class="form-control form-control-sm bg-dark text-light border-secondary"
+           placeholder="e.g. Homelab, Work, Media"
+           value="{{ bookmark.category if bookmark is defined else '' }}">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label text-muted small">Description</label>
+    <input type="text" name="description" class="form-control form-control-sm bg-dark text-light border-secondary"
+           placeholder="Short description"
+           value="{{ bookmark.description if bookmark is defined else '' }}">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label text-muted small">Icon Source</label>
+    <select name="icon_type" class="form-select form-select-sm bg-dark text-light border-secondary"
+            onchange="updateIconPreview(this)">
+      <option value="mdi"     {% if bookmark is defined and bookmark.icon_type == 'mdi' %}selected{% endif %}>
+        Material Design Icons (mdi)
+      </option>
+      <option value="si"      {% if bookmark is defined and bookmark.icon_type == 'si' %}selected{% endif %}>
+        Simple Icons (si)
+      </option>
+      <option value="selfhst" {% if bookmark is defined and bookmark.icon_type == 'selfhst' %}selected{% endif %}>
+        selfh.st Icons
+      </option>
+      <option value="url"     {% if bookmark is defined and bookmark.icon_type == 'url' %}selected{% endif %}>
+        Custom URL
+      </option>
+    </select>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label text-muted small">
+      Icon Value
+      <a href="https://pictogrammers.com/library/mdi/" target="_blank" class="ms-1 text-info small icon-help-mdi" title="Browse MDI icons">
+        <i class="mdi mdi-open-in-new"></i> MDI
+      </a>
+      <a href="https://simpleicons.org/" target="_blank" class="ms-1 text-info small icon-help-si" title="Browse Simple Icons">
+        <i class="mdi mdi-open-in-new"></i> SI
+      </a>
+      <a href="https://selfh.st/icons/" target="_blank" class="ms-1 text-info small icon-help-selfhst" title="Browse selfh.st icons">
+        <i class="mdi mdi-open-in-new"></i> selfh.st
+      </a>
+    </label>
+    <div class="input-group input-group-sm">
+      <input type="text" name="icon_value" id="icon_value_input"
+             class="form-control bg-dark text-light border-secondary"
+             placeholder="e.g. home, github, portainer, https://…"
+             value="{{ bookmark.icon_value if bookmark is defined else '' }}"
+             oninput="updateIconPreview(this)">
+      <span class="input-group-text bg-dark border-secondary" id="icon-preview-container">
+        <span id="icon-preview" style="display:inline-flex;align-items:center;min-width:24px;min-height:24px;"></span>
+      </span>
+    </div>
+    <div class="form-text text-muted">
+      MDI: icon name (e.g. <code>home</code>) &nbsp;|&nbsp;
+      SI: slug (e.g. <code>github</code>) &nbsp;|&nbsp;
+      selfh.st: name (e.g. <code>portainer</code>) &nbsp;|&nbsp;
+      URL: full image URL
+    </div>
+  </div>
+  <div class="col-md-2 d-flex align-items-end">
+    <div class="form-check ms-2 mb-1">
+      <input class="form-check-input" type="checkbox" name="is_active" id="is_active_{{ bookmark.id if bookmark is defined else 'new' }}"
+             {% if (bookmark is not defined) or bookmark.is_active %}checked{% endif %}>
+      <label class="form-check-label text-muted small"
+             for="is_active_{{ bookmark.id if bookmark is defined else 'new' }}">Active</label>
+    </div>
+  </div>
+</div>

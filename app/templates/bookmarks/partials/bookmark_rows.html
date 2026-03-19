@@ -1,0 +1,9 @@
+{% for bookmark in bookmarks %}
+  {% include "bookmarks/partials/bookmark_row.html" %}
+{% else %}
+  <tr id="no-results-row">
+    <td colspan="6" class="text-center text-muted py-4">
+      <i class="mdi mdi-bookmark-off-outline me-2"></i>No bookmarks found.
+    </td>
+  </tr>
+{% endfor %}
